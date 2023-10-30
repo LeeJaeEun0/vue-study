@@ -41,14 +41,28 @@
     <button @click="신고수[2]++" >허위매물신고</button> <span>신고수 : {{신고수[2]}}</span>
   </div>
 
+  <!-- <div> 
+  <img :src="원룸들[0].image" class="room-img">
+    <h4>{{원룸들[0].title}}</h4>
+    <p>{{원룸들[0].price}}</p>
+  </div>
+  <div>  -->
+    
+  <div v-for="(a, i) in 원룸들" :key="i">   
+    <img :src="a.image" class="room-img">
+      <h4>{{a.title}}</h4>
+      <p>{{a.price}}</p>
+  </div>
+
 </template>
 <script>
-
+import data from './assets/data.js'
 
 export default {
   name: 'App',
   data(){
     return {
+      원룸들 : data,
       신고수 : [0,0,0],
       menu : ['Home', 'Shop', 'About'],
       products : ['역삼동원룸', '천호동원룸', '마포구원룸'],
