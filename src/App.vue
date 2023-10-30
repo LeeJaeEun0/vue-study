@@ -3,13 +3,9 @@
       <a v-for="i in menu" :key="i">{{i}}</a>
     </div>
 
-  <div>
-    <h4 class="red" :style="스타일">{{products[0]}}</h4>
+  <div  v-for="i in products" :key="i" > 
+    <h4 :style="스타일">{{i}}</h4>
     <p>100 만원</p>
-    <h4 class="red" :style="스타일">{{products[1]}}</h4>
-    <p>80 만원</p>
-    <h4 class="red" :style="스타일">{{products[2]}}</h4>
-    <p>90 만원</p>
   </div>
 
 
