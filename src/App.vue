@@ -1,9 +1,22 @@
 <template>
   
+  <div v-if="1==2">
+    안녕하세요
+  </div>
+  <div v-else-if="1==3">
+    안녕하세요2
+  </div>
+  <div v-else>
+    안녕하세요3
+  </div>
+
+
    <div class="black-bg" v-if="모달창 == true"><!-- 1==1은 참일 경우, 1==2는 거짓, 참일때 보임-->
     <div class="white-bg">
-      <h4>상세페이지</h4>
-      <p>상세페이지 내용</p>
+      <img :src="원룸들[clickNumber].image" class="room-img">
+      <h4>{{원룸들[clickNumber].title}}</h4>
+      <p>{{원룸들[clickNumber].price}}</p>
+      <p>{{원룸들[clickNumber].content}}</p>
       <button @click="모달창 = false"> 닫기</button>
     </div>
   </div>
@@ -47,10 +60,10 @@
     <p>{{원룸들[0].price}}</p>
   </div>
   <div>  -->
-    
+
   <div v-for="(a, i) in 원룸들" :key="i">   
     <img :src="a.image" class="room-img">
-      <h4>{{a.title}}</h4>
+      <h4 @click="모달창=true; clickNumber = i">{{a.title}}</h4>
       <p>{{a.price}}</p>
   </div>
 
@@ -62,6 +75,7 @@ export default {
   name: 'App',
   data(){
     return {
+      clickNumber : 0,
       원룸들 : data,
       신고수 : [0,0,0],
       menu : ['Home', 'Shop', 'About'],
