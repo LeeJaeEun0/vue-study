@@ -25,6 +25,8 @@
       <a v-for="i in menu" :key="i">{{i}}</a>
     </div>
 
+  <Discount/>
+
   <!-- <div  v-for="(a,i) in products" :key="i" > 
     <h4>{{products[i]}}</h4>
     <h4>{{a}}</h4>
@@ -69,7 +71,8 @@
 
 </template>
 <script>
-import data from './assets/data.js'
+import data from './assets/data.js';
+import Discount from './Discount.vue';
 
 export default {
   name: 'App',
@@ -89,6 +92,7 @@ export default {
     }
   },
   components: {
+    Discount : Discount, // Discount로 축약가능
   }
 }
 </script>
@@ -110,6 +114,12 @@ div {
   border-radius: 8px;
   padding: 20px;
 }  
+.discount{
+  background: #eee;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
