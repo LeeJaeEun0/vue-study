@@ -29,6 +29,19 @@ export default {
         month : 1,
       }
     },
+    watch :{
+      month(a){ // a는 사용자가 입력한 변수
+        //사용자가 month에 문자 입력시 경고문
+        if(a >= 13){
+          alert('13이상 입력하지마세요')
+        }
+
+        if(typeof a === 'string'){
+          alert('문자를 입력하지마세요')
+          this.month=1
+        }
+      } // month변수를 감시 - month가 변경될때마다 실행
+    },
     props : {
         // 변수명 : 타입
         원룸들 : Object,
