@@ -3,13 +3,13 @@
   <div v-else-if="1 == 3">안녕하세요2</div>
   <div v-else>안녕하세요3</div>
 
-  <Modal :원룸들="원룸들" :모달창="모달창" :clickNumber="clickNumber"/>
+  <Modal @closeModal="모달창=false" :원룸들="원룸들" :모달창="모달창" :clickNumber="clickNumber"/>
 
   <div class="menu">
     <a v-for="i in menu" :key="i">{{ i }}</a>
   </div>
 
-  <Discount />
+  <Discount v-bind="오브젝트" :이름="오브젝트.이름"/>
 
   <!-- <div  v-for="(a,i) in products" :key="i" > 
     <h4>{{products[i]}}</h4>
@@ -48,9 +48,12 @@
     <p>{{원룸들[0].price}}</p>
   </div>
   <div>  -->
-
+<!-- 
   <div v-for="(a, i) in 원룸들" :key="i">
     <Card :a="a" :i="i"/>
+  </div> -->
+  <div >
+    <Card @openModal="모달창=true;clickNumber=$event" :a="원룸들[i]" v-for="(a, i) in 원룸들" :key="i"/>
   </div>
 
 </template>

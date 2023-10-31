@@ -5,7 +5,7 @@
       <h4>{{원룸들[clickNumber].title}}</h4>
       <p>{{원룸들[clickNumber].price}}</p>
       <p>{{원룸들[clickNumber].content}}</p>
-      <!-- <button @click="모달창 = false"> 닫기</button> -->
+      <button @click="$emit('closeModal')"> 닫기</button>
     <!-- 자식은 모달창 = false 처럼 변경 불가능 -->
     </div>
   </div>

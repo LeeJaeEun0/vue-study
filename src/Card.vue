@@ -1,10 +1,7 @@
 <template>
   <img :src="a.image" class="room-img" />
     <h4
-      @click="
-        모달창 = true;
-        clickNumber = i;
-      "
+      @click=" send"
     >
       {{ a.title }}
     </h4>
@@ -18,7 +15,11 @@ export default {
     props : {
         // 변수명 : 타입
         a:Object,
-        i:Number
+    },
+    methods:{
+        send(){
+            this.$emit('openModal', this.a.id)
+        }
     }
 }
 </script>
