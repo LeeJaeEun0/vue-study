@@ -3,7 +3,13 @@
   <div v-else-if="1 == 3">안녕하세요2</div>
   <div v-else>안녕하세요3</div>
 
+<!-- <div class="start" :class="{end : 모달창}">
   <Modal @closeModal="모달창=false" :원룸들="원룸들" :모달창="모달창" :clickNumber="clickNumber"/>
+</div> -->
+
+<transition name="fade">
+  <Modal @closeModal="모달창=false" :원룸들="원룸들" :모달창="모달창" :clickNumber="clickNumber"/>
+</transition>
 
   <div class="menu">
     <a v-for="i in menu" :key="i">{{ i }}</a>
@@ -89,6 +95,42 @@ export default {
 </script>
 
 <style>
+/* -enter-는 등장, -leace-는 퇴장 */
+
+
+.fade-enter-from{
+  /* 시작 */
+  transform: translateY(-1000px);
+} 
+.fade-enter-active{
+  /* transition */
+  transition: all 1s;
+}
+.fade-enter-to{
+  /* 끝 */
+  transform: translateY(0px);
+}
+
+.fade-leave-from{
+  /* 시작 */
+  opacity: 1;
+} 
+.fade-leave-active{
+  /* transition */
+  transition: all 1s;
+}
+.fade-leave-to{
+  /* 끝 */
+  opacity: 0;
+}
+
+.start{
+  opacity: 0;
+  transition: all 1s;
+}
+.end{
+  opacity: 1;
+}
 body {
   margin: 0;
 }
