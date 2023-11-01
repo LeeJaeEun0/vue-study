@@ -17,22 +17,27 @@
 
   <Discount v-bind="오브젝트" :이름="오브젝트.이름"/>
 
+  <button @click="priceSort">가격순 정렬 버튼</button>
+  <button @click="priceSortDesc">가격역순 정렬 버튼</button>
+  <button @click="nameeSort">이름순 정렬 버튼</button>
+  <button @click="sortBack">되돌아기 버튼 버튼</button>
+
   <!-- <div  v-for="(a,i) in products" :key="i" > 
     <h4>{{products[i]}}</h4>
     <h4>{{a}}</h4>
     <p>100 만원</p>
   </div> -->
 
-  <div>
+  <!-- <div>
     <img src="./assets/room0.jpg" class="room-img" />
     <h4 @click="모달창 = true">{{ products[0] }}</h4>
     <p>100 만원</p>
     <button @click="신고수[0]++">허위매물신고</button>
-    <span>신고수 : {{ 신고수[0] }}</span>
+    <span>신고수 : {{ 신고수[0] }}</span> -->
     <!-- <button @click="신고수++" >허위매물신고</button> <span>신고수 : {{신고수}}</span> -->
     <!-- <button  @mouseover="신고수++">허위매물신고</button> <span>신고수 : {{신고수}}</span> -->
     <!-- <button v-on:click="">허위매물신고</button> <span>신고수 : 0</span> -->
-  </div>
+  <!-- </div>
   <div>
     <img src="./assets/room1.jpg" class="room-img" />
     <h4 @click="모달창 = true">{{ products[1] }}</h4>
@@ -46,7 +51,7 @@
     <p>90 만원</p>
     <button @click="신고수[2]++">허위매물신고</button>
     <span>신고수 : {{ 신고수[2] }}</span>
-  </div>
+  </div> -->
 
   <!-- <div> 
   <img :src="원룸들[0].image" class="room-img">
@@ -72,6 +77,8 @@ export default {
   name: "App",
   data() {
     return {
+      원룸들오리지널 : [...data], // array, object 별개의 사본을 만들기 위함
+      // data로 하면 sort로 변형 되기 때문
       오브젝트 : {name:'kim', age : 20},
       clickNumber: 0,
       원룸들: data,
@@ -85,6 +92,33 @@ export default {
     increase(i) {
       this.신고수[i] += 1;
     },
+    priceSort(){
+      // var array = [3,4,2];
+      // array.sort() // 문자 정렬
+      // sort는 원본데이터를 변경 , map, filter는 원본을 변형하지 않음
+      this.원룸들.sort(function(a,b){ // 숫자 정렬인 경우
+        return a.price - b.price // 양수면 왼쪽에 b, 음수면 a가 왼쪽에 가도록 함
+      });
+
+    },
+    priceSortDesc(){
+      this.원룸들.sort()
+      // this.원룸들.sort(function(a,b){ // 숫자 정렬인 경우
+      //   return b.price - a.price // 양수면 왼쪽에 b, 음수면 a가 왼쪽에 가도록 함
+      // });
+
+    },
+    nameSort(){
+      this.원룸들.sort(function(a,b){ 
+        return a.title.localeCompare(b.title)
+      });
+
+    },
+    sortBack(){
+      // 등호는 왼쪽 오른쪽 값을 공유해달라는 의미
+      // this.원룸들 = this.원룸들오리지널;
+      this.원룸들 = [...this.원룸들오리지널];
+    }
   },
   components: {
     Discount: Discount, // Discount로 축약가능
